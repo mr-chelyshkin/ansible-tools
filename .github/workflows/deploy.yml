@@ -1,0 +1,31 @@
+name: upload 
+
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  upload:
+    runs-on: ubuntu-22.04
+    permissions:
+      id-token: write
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+        with:
+          repository: mr-chelyshkin/tools
+          token: ${{ secrets.PAT }}
+
+      - name: Configure DockerHub credentials
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build, tag and push image
+        env:
+          IMAGE_TAG: ${{ github.ref_name }}
+        run: |
+          docker build -f ./ansible/Dockerfile -t .
+          docker push :${IMAGE_TAG}
