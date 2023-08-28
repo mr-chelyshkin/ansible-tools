@@ -27,5 +27,5 @@ jobs:
         env:
           IMAGE_TAG: ${{ github.ref_name }}
         run: |
-          docker build -f ./ansible/Dockerfile -t chelyshkin/ansible:${IMAGE_TAG} .
+          docker build -f ./Dockerfile -t chelyshkin/ansible:${IMAGE_TAG} .
           docker push chelyshkin/ansible:${IMAGE_TAG}
