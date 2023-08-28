@@ -8,8 +8,11 @@ RUN apt-get update && \
 
 COPY ./entrypoint.sh /root/entrypoint.sh
 COPY ./ansible-cli.sh /root/ansible-cli.sh
+
 RUN chmod +x /root/ansible-cli.sh && \
     /root/ansible-cli.sh install
+RUN ln -s /root/ansible-cli.sh /bin/ansible-cli
 
+WORKDIR /root/.ansible/environment
 ENTRYPOINT ["/root/entrypoint.sh"]
 CMD ["bash"]
