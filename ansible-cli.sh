@@ -13,9 +13,9 @@ VENV_PATH="${HOME}/.ansible"
 ANSIBLE_CFG_PATH="${HOME}/.ansible.cfg"
 
 # this envs set as defaults, but it can be rewrite by [-r] commands flag.
-ANSIBLE_PLAYBOOKS_GIT_URL="https://gitlab.ozon.ru/re/tegridy-farms/ansible.git"
+ANSIBLE_PLAYBOOKS_GIT_URL="https://github.com/mr-chelyshkin/environment.git"
 # this envs set as defaults, but it can be rewrite by [-b] commands flag.
-ANSIBLE_PLAYBOOKS_GIT_BRANCH="master"
+ANSIBLE_PLAYBOOKS_GIT_BRANCH="main"
 
 PYTHON_PATH=""
 ACTION=""
@@ -64,7 +64,7 @@ HelpInstallOptions() {
   echo "venv deactivate: deactivate"
   echo
   echo "options:"
-  echo "  -r  Set playbooks repository path as https url [https://gitlab.ozon.ru/pub/ansible/re.git]"
+  echo "  -r  Set playbooks repository path as https url [https://github.com/mr-chelyshkin/environment.git]"
   echo "  -b  Set playbooks repository branch [master]"
   echo "  -p  Set path to python3 bin file [if not set: try to find python automatically]"
   echo "  -h  Show help"
@@ -93,7 +93,7 @@ HelpUpdatePlaybookOptions() {
   echo "has automatic fix mode: if can't update, try re-clone git repository"
   echo
   echo "options:"
-  echo "  -r  Set playbooks repository path as https url [https://gitlab.ozon.ru/pub/ansible/re.git]"
+  echo "  -r  Set playbooks repository path as https url [https://github.com/mr-chelyshkin/environment.git]"
   echo "  -b  Set playbooks repository branch [master]"
   echo "  -h  Show help"
   echo
@@ -189,7 +189,7 @@ InstallAnsible() {
   fi
 
   echo "installing ansible:"
-  if "${VENV_PATH}/bin/python" -m pip install ansible --extra-index-url https://artifactory.s.o3.ru/artifactory/api/pypi/pypi-remote; then
+  if "${VENV_PATH}/bin/python" -m pip install ansible; then
     echo "ansible pkg was installed"
   else
     echo "error while pip install ansible" >&2
