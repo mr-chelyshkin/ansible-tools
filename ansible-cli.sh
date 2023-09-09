@@ -224,6 +224,7 @@ log_path    = ${VENV_PATH}/ansible.log
 nocows      = 1
 
 retry_files_save_path = ${VENV_PATH}/.ansible-retry
+host_key_checking = False
 EOF
 
   return 0
