@@ -1,5 +1,11 @@
 # Common tools
 
+## container
+```shell
+docker pull chelyshkin/ansible:latest
+docker run --rm -ti chelyshkin/ansible:latest bash
+```
+
 ## ansible-cli.sh
 Bash script for install ansible on local machine and configure workspace.  
 
